@@ -6,7 +6,7 @@ module.exports = multer({
   storage: multer.diskStorage({}),
   fileFilter: (req, file, cb) => {
     let ext = path.extname(file.originalname);  
-    if (ext !== ".mp3" && ext !== ".mp4" && ext !== ".ogg" && ext !== ".webM" ) {
+    if (ext !== ".mp3" && ext !== ".mp4" && ext !== ".ogg" && ext !== ".webM" && ext !== ".m4a" && ext !== ".wav" && ext !== ".3gp") {
       cb(new Error("File type is not supported"), false);
       return;
     }
