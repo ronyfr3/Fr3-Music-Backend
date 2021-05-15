@@ -21,7 +21,7 @@ const postMusic = async (req, res,next) => {
       msg: 'uploaded successfully'
     });
   } catch (error) {
-      next(error)
+    next(error)
   }
 }
 //get
