@@ -1,10 +1,21 @@
-const errorMiddlewareHandler = (err, req, res, next) => {
-  //set status code
-  const errorStatusCode = res.statusCode === 200 ? 500 : res.statusCode;
-  res.status(errorStatusCode);
-  res.json({
-    message: err.message,
-  });
-};
+class ErrorHandler extends Error{
+  constructor(statusCode, message) {
+    super()
+    this.statusCode = statusCode
+    this.message = message
+  }
+}
 
-module.exports = { errorMiddlewareHandler };
+const handleError = (err, res) => {
+  let { statusCode, message } = err
+   statusCode = err.statusCode || 500
+  res.status(statusCode).json({
+    status: "error",
+    statusCode,
+    message
+  })
+}
+module.exports = {
+  ErrorHandler,
+  handleError
+}
