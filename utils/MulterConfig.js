@@ -1,5 +1,6 @@
 const multer = require("multer");
 const path = require("path");
+const { AppError } = require("../Error/ErrorClass");
 
 // Multer config
 module.exports = multer({
@@ -7,7 +8,7 @@ module.exports = multer({
   fileFilter: (req, file, cb) => {
       let ext = path.extname(file.originalname);  
       if (ext !== ".mp3" && ext !== ".m4a" && ext !== ".wav" && ext !== ".3gp") {
-        cb(new Error("File type is not supported"), false);
+        cb(new AppError("File type is not supported",400), false);
         return;
       }
       cb(null, true);
